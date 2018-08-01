@@ -1,5 +1,7 @@
 # Kaggle--Titanic
 
+In this repository I will walk through my approach to the classic kaggle dataset--the Titanic survivors. 
+
 Setup
 =====
 
@@ -63,6 +65,7 @@ sapply(train, function(x) length(which(x == '')))
 
 EDA
 ===
+
 
 ``` r
 pairs(train[which(sapply(train, class) == 'numeric')])
