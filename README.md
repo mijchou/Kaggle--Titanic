@@ -5,6 +5,8 @@ In this repository I will walk through my approach to the classic kaggle dataset
 Setup
 =====
 
+Caret (Classification and Regression Training) is a powerful R package that I will be using to grid-search the tuning parameters of models throughout out the work.
+
 ``` r
 library(caret)
 library(rpart)
@@ -18,6 +20,8 @@ test <- read.csv('test.csv', stringsAsFactors = T)
 
 Data Checking
 =============
+
+The first thing is always to look at your data! And get familiar with what you are dealing with. In R, we can use names() with the data frame to check out the names of features. str() gives a quick summary of the type of the features. Then we find out the number of missing values in the dataset.
 
 ``` r
 names(train)
@@ -66,6 +70,7 @@ sapply(train, function(x) length(which(x == '')))
 EDA
 ===
 
+After having the first glance of data, we dig in a bit deeper. With visualizations, we can easily see the big picture of relationships among different vairalbes. Refer to ___repo(link)___ to check out some more EDA ideas, with this dataset. 
 
 ``` r
 pairs(train[which(sapply(train, class) == 'numeric')])
@@ -88,8 +93,11 @@ hist(train$Fare, breaks = 100, main = 'Fare')
 Data Cleaning
 =============
 
+
 Feature Modifications
 ---------------------
+
+To build classification models, we need to make sure the type of our response is set to be factor, or it will be easily treated as numbers.
 
 ``` r
 train$Survived <- as.factor(train$Survived)
@@ -98,6 +106,8 @@ train$Pclass <- as.factor(train$Pclass)
 
 Imputation: Age
 ---------------
+
+Model building to impute (make up for) missing values, using other available features.
 
 ``` r
 age.train <- train[is.na(train$Age) == F, ]
@@ -135,6 +145,8 @@ train$Title <- as.factor(train$Title)
 
 Modelling
 =========
+
+Let's build the model! (Ok... I'll come back for more explanations.)
 
 Features Selection
 ------------------
