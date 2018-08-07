@@ -364,6 +364,8 @@ Final Prediction
 Test Data Preparation
 ---------------------
 
+Check out the test set given. The missing values can also be imputed with the models built in the previous section.
+
 ``` r
 str(test)
 ```
@@ -414,6 +416,8 @@ test$Age[is.na(test$Age) == T] <- predict(age.test.fit,
 Prediction
 ----------
 
+Predict! Note that to submit answers onto kaggle the format has to follow exactly how it is specified, e.g. coloumn names have to be the same with what's stated.
+
 ``` r
 pred.rf <- predict(fit.rf, newdata = test)
 head(pred.rf)
@@ -431,6 +435,8 @@ names(answer) <- c('PassengerId', 'Survived')
 
 Export Predictions
 ------------------
+
+Use write.csv() to export csv files. Use the argument row.names = F to prevent an extra column of ID.
 
 ``` r
 write.csv(answer, file = 'submission.csv', row.names = F)
